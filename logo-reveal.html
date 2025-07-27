@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>14th Anniversary Reveal</title>
+  <link rel="stylesheet" href="reveal-style.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logos/ftc.png" alt="FTC Logo" class="logo-img" style="height: 60px; width: auto;">  
+      Friends Tamil Chat
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="logo-reveal.html" class="active">14 - Ann - Logo</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="#">Results</a></li>
+    </ul>
+  </nav>
+
+  <div class="reveal-container">
+    <button id="revealBtn">Reveal 14th Anniversary Logo</button>
+
+    <div id="logoCircle" class="hidden">
+      <div id="countdown">1</div>
+      <img src="assets/logos/logo14.png" alt="14th Anniversary Logo" id="logoImg">
+    </div>
+
+    <!-- Download Button -->
+    <a id="downloadBtn" class="hidden" href="assets/logos/avatar-14FTC.png" download="FTC_14th_Anniversary.png">
+      <button class="download-button">Download Celebration Image</button>
+    </a>
+
+    <audio id="revealSound" src="assets/audio/inioru.mp3"></audio>
+  </div>
+
+  <footer>© Anothjeev – Friends Tamil Chat</footer>
+  <script src="reveal-script.js"></script>
+
+</body>
+</html>

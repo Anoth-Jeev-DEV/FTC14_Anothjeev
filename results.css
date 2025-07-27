@@ -1,0 +1,283 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Navbar */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #ffcb05;
+  padding: 1.25rem 1rem; /* 20px 16px */
+  text-shadow: 0 0 8px #ffcb05aa;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+/* Winner Section */
+.winner-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem 2.5rem; /* 100px 20px 40px */
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  background-attachment: fixed;
+  overflow: hidden;
+  /* Add some padding bottom on smaller devices */
+}
+
+@media (max-width: 480px) {
+  .winner-section {
+    padding-top: 4rem; /* less top padding for very small devices */
+    padding-bottom: 2rem;
+  }
+}
+
+/* Place Buttons Container */
+.place-buttons {
+  position: fixed;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem; /* 30px */
+  z-index: 1000;
+  background: rgba(20, 20, 20, 0.8);
+  padding: 0.75rem 1.5rem; /* 12px 24px */
+  border-radius: 1rem; /* 16px */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  flex-wrap: wrap;
+  max-width: 90vw;
+  justify-content: center;
+}
+
+/* Reduce top offset on smaller screens */
+@media (max-width: 768px) {
+  .place-buttons {
+    top: 60px;
+    gap: 1.25rem; /* 20px */
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .place-buttons {
+    top: 50px;
+    gap: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Circle Buttons */
+.place-buttons button {
+  width: 7.5rem; /* 120px */
+  height: 7.5rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), inset 0 0 10px rgba(255, 255, 255, 0.25);
+  flex-shrink: 0; /* prevent shrinking too small */
+}
+
+.place-buttons button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.15);
+}
+
+@media (max-width: 768px) {
+  .place-buttons button {
+    width: 6.25rem; /* 100px */
+    height: 6.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .place-buttons button {
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Special styles for each place */
+.place-buttons .first {
+  background: radial-gradient(circle at 30% 30%, #ffd700, #ffcc00);
+  box-shadow: 0 0 30px #ffd700aa, inset 0 0 20px #fff7b2;
+}
+.place-buttons .first::before {
+  content: "👑";
+  font-size: 1.5rem;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 0 10px #ffdf00;
+  z-index: 2;
+}
+
+.place-buttons .second {
+  background: radial-gradient(circle at 30% 30%, #c0c0c0, #a9a9a9);
+  box-shadow: 0 0 25px #c0c0c088, inset 0 0 15px #e0e0e0;
+}
+
+.place-buttons .third {
+  background: radial-gradient(circle at 30% 30%, #cd7f32, #b87333);
+  box-shadow: 0 0 20px #cd7f3288, inset 0 0 10px #f5c39d;
+}
+
+/* Shine Animation */
+.place-buttons button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #ffffff33 10%, transparent 70%);
+  transform: rotate(45deg);
+  animation: shine 2.5s linear infinite;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(0deg) translateX(-100%);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100%);
+  }
+}
+
+/* Winner Message */
+.winner-message {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffcb05;
+  margin-bottom: 2.5rem; /* 40px */
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  text-shadow: 0 0 10px #ffcb05cc, 0 0 20px #ffcb05aa;
+  letter-spacing: 1.5px;
+  max-width: 90vw;
+  margin-inline: auto;
+  user-select: none;
+  line-height: 1.1;
+}
+
+.winner-message.animated {
+  animation: messageFadeInUp 0.7s ease forwards;
+}
+
+@keyframes messageFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .winner-message {
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .winner-message {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* Winner Display */
+.winner-display {
+  position: relative;
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1rem; /* 20px */
+}
+
+.winner-img {
+  max-width: 65%;
+  height: auto;
+  display: none;
+  margin: 0 auto;
+  animation: winnerEntry 1s ease;
+  border-radius: 1.25rem; /* 20px */
+  box-shadow: 0 0 40px 10px #ffcb05aa;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.625rem; /* 10px */
+  transition: opacity 0.5s ease;
+}
+
+.winner-img.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Entry Animation */
+@keyframes winnerEntry {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-15deg);
+    filter: brightness(1.8) blur(2px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .winner-img {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 400px) {
+  .winner-img {
+    max-width: 95%;
+  }
+}
